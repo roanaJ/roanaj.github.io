@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waren Fernandez - Personal Portfolio</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #f97316;
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+            --text-muted: #64748b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-color);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        /* Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color) !important;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: var(--dark-color) !important;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat center;
+            background-size: cover;
+            animation: wave 20s linear infinite;
+        }
+        
+        @keyframes wave {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(-50%) translateY(-50%); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 50%;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .social-links a:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        /* About Section */
+        .about-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .about-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .trait-badge {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--light-color);
+            color: var(--dark-color);
+            border-radius: 50px;
+            margin: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .trait-badge:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        /* Services Section */
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .service-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        /* Projects Section */
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 30px;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .tech-badge {
+            padding: 5px 15px;
+            background: var(--light-color);
+            color: var(--dark-color);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        /* Hobbies Section */
+        .hobby-item {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .hobby-icon {
+            font-size: 4rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: var(--dark-color);
+            color: white;
+        }
+        
+        .contact .section-title::after {
+            background: var(--secondary-color);
+        }
+        
+        .contact-info {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info i {
+            color: var(--secondary-color);
+            margin-right: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .profile-img {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">WF</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hobbies">Hobbies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="fade-in">Hi! It's me,<br>Waren Fernandez</h1>
+                    <p class="fade-in">Developer • Tech Enthusiast • Problem Solver</p>
+                    <div class="social-links fade-in">
+                        <a href="#" target="_blank"><i class="bi bi-facebook"></i></a>
+                        <a href="#" target="_blank"><i class="bi bi-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" target="_blank"><i class="bi bi-github"></i></a>
+                        <a href="#" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="your-photo.jpg" alt="Waren Fernandez" class="profile-img fade-in">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-light">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="about-card">
+                        <h3 class="mb-4">Who I Am</h3>
+                        <p class="lead mb-4">
+                            I'm a passionate developer and tech enthusiast based in the Philippines. 
+                            I love creating innovative solutions and bringing ideas to life through code.
+                        </p>
+                        <p class="mb-4">
+                            With a strong foundation in web development and a knack for problem-solving, 
+                            I enjoy tackling challenging projects and learning new technologies. When I'm not coding, 
+                            you'll find me repairing gadgets or exploring the latest tech trends.
+                        </p>
+                        
+                        <h4 class="mt-5 mb-3">Personality & Traits</h4>
+                        <div class="traits">
+                            <span class="trait-badge">MBTI: INTJ</span>
+                            <span class="trait-badge">Creative Thinker</span>
+                            <span class="trait-badge">Detail-Oriented</span>
+                            <span class="trait-badge">Self-Motivated</span>
+                            <span class="trait-badge">Team Player</span>
+                            <span class="trait-badge">Problem Solver</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="about-card">
+                        <h4 class="mb-4">Skills</h4>
+                        <div class="mb-3">
+                            <h6>Web Development</h6>
+                            <div class="progress" style="height: 10px;">
+                                <div class="progress-bar" style="width: 90%; background: var(--primary-color);"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h6>Hardware Repair</h6>
+                            <div class="progress" style="height: 10px;">
+                                <div class="progress-bar" style="width: 85%; background: var(--primary-color);"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h6>Problem Solving</h6>
+                            <div class="progress" style="height: 10px;">
+                                <div class="progress-bar" style="width: 95%; background: var(--primary-color);"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h6>UI/UX Design</h6>
+                            <div class="progress" style="height: 10px;">
+                                <div class="progress-bar" style="width: 80%; background: var(--primary-color);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Services</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <i class="bi bi-code-slash service-icon"></i>
+                        <h4 class="mb-3">Web Development</h4>
+                        <p>Creating responsive and modern websites tailored to your needs. From simple landing pages to complex web applications.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <i class="bi bi-tools service-icon"></i>
+                        <h4 class="mb-3">Gadget Repair</h4>
+                        <p>Expert repair services for smartphones, laptops, and other electronic devices. Quick and reliable solutions.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <i class="bi bi-lightbulb service-icon"></i>
+                        <h4 class="mb-3">Tech Consultation</h4>
+                        <p>Providing advice on technology solutions, system optimization, and digital transformation strategies.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <i class="bi bi-brush service-icon"></i>
+                        <h4 class="mb-3">UI/UX Design</h4>
+                        <p>Designing intuitive and visually appealing user interfaces for websites and applications.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <i class="bi bi-database service-icon"></i>
+                        <h4 class="mb-3">Database Management</h4>
+                        <p>Setting up and managing databases, optimizing queries, and ensuring data security.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <i class="bi bi-gear service-icon"></i>
+                        <h4 class="mb-3">Custom Solutions</h4>
+                        <p>Developing custom software solutions to automate tasks and improve business processes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="bg-light">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="project-card">
+                        <img src="pisoprint-preview.jpg" alt="PisoPrint" class="project-img">
+                        <div class="project-content">
+                            <h4>PisoPrint</h4>
+                            <p>An innovative printing solution that makes printing services accessible and affordable. This project combines hardware and software to create a user-friendly printing kiosk system.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">React</span>
+                                <span class="tech-badge">Arduino</span>
+                                <span class="tech-badge">IoT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="project-card">
+                        <img src="project2-preview.jpg" alt="Project 2" class="project-img">
+                        <div class="project-content">
+                            <h4>Smart Home Dashboard</h4>
+                            <p>A comprehensive dashboard for monitoring and controlling smart home devices. Features real-time data visualization and automated scheduling.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge">Vue.js</span>
+                                <span class="tech-badge">Node.js</span>
+                                <span class="tech-badge">MongoDB</span>
+                                <span class="tech-badge">MQTT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section id="hobbies">
+        <div class="container">
+            <h2 class="section-title">Hobbies & Interests</h2>
+            <div class="row">
+                <div class="col-md-3 hobby-item">
+                    <i class="bi bi-controller hobby-icon"></i>
+                    <h5>Gaming</h5>
+                    <p>Enjoying strategy and puzzle games</p>
+                </div>
+                <div class="col-md-3 hobby-item">
+                    <i class="bi bi-book hobby-icon"></i>
+                    <h5>Reading</h5>
+                    <p>Tech blogs and programming books</p>
+                </div>
+                <div class="col-md-3 hobby-item">
+                    <i class="bi bi-cpu hobby-icon"></i>
+                    <h5>Hardware Tinkering</h5>
+                    <p>Building and modifying electronics</p>
+                </div>
+                <div class="col-md-3 hobby-item">
+                    <i class="bi bi-music-note hobby-icon"></i>
+                    <h5>Music</h5>
+                    <p>Listening to various genres</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title text-white">Get In Touch</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4 class="mb-4">Let's work together!</h4>
+                    <p class="mb-4">I'm always interested in hearing about new projects and opportunities. Whether you need a website, have a gadget that needs fixing, or just want to say hi, feel free to reach out!</p>
+                    
+                    <div class="contact-info">
+                        <i class="bi bi-envelope"></i> waren@warenfernandez.com
+                    </div>
+                    <div class="contact-info">
+                        <i class="bi bi-geo-alt"></i> Philippines
+                    </div>
+                    <div class="contact-info">
+                        <i class="bi bi-globe"></i> warenfernandez.com
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="mb-0">&copy; 2024 Waren Fernandez. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
